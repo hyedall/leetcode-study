@@ -7,11 +7,6 @@ https://leetcode.com/problems/house-robber/description/
 
 공간 복잡도: O(n)
 - 각 인덱스까지의 최대 금액 dp 배열에 저장
-
-점화식:
-- dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
-- nums[i] + dp[i - 2]: 현재 집을 터는 경우
-- dp[i - 1]: 현재 집을 털지 않는 경우
 """
 
 class Solution:
@@ -21,6 +16,8 @@ class Solution:
         dp[0] = nums[0]
 
         for i in range(1, n):
+            # 점화식: dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+            # 현재 집을 터는 경우와 털지 않는 경우 중 선택
             dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
         
         return dp[-1]
